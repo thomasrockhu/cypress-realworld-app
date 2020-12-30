@@ -47,6 +47,7 @@ workflows:
           name: E2E desktop tests
           executor: cypress/base-12-18-3
           yarn: true
+          spec: "cypress/tests/ui/*"
           start: yarn start:ci
           wait-on: "http://localhost:3000"
           requires:
