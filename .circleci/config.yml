@@ -39,7 +39,6 @@ workflows:
           wait-on: "http://localhost:3000"
           requires:
             - cypress/install
-          record: true
           group: api
           post-steps:
             - report-coverage:
@@ -57,7 +56,6 @@ workflows:
           wait-on: "http://localhost:3000"
           requires:
             - cypress/install
-          record: true
           parallel: true
           parallelism: 2
           group: e2e
@@ -77,7 +75,6 @@ workflows:
           wait-on: "http://localhost:3000"
           requires:
             - cypress/install
-          record: true
           parallel: true
           parallelism: 2
           group: "e2e mobile"
