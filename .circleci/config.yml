@@ -42,7 +42,7 @@ workflows:
           group: api
           post-steps:
             - report-coverage:
-                flags: backend
+                flag: backend
           # do not preserve the workspace in this job, since
           # there are no jobs that follow it
           no-workspace: true
