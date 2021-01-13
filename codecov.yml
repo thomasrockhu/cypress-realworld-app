@@ -19,10 +19,9 @@
 #       paths:
 #         - src
 
-# comment:
-#   layout: "reach,diff,flags,tree"
-#   behavior: default
-
+comment:
+  layout: "reach,diff,flags,tree"
+  behavior: default
 
 coverage:
   status:
@@ -33,7 +32,19 @@ coverage:
         target: 80%
         flags:
           - backend
+      mobile:
+        target: 80%
+        flags:
+          - mobile
+      desktop:
+        target: 80%
+        flags:
+          - desktop
 flags:
   backend:
-  paths:
-    - backend/
+    paths:
+      - backend/
+  mobile:
+    carryforward: true
+  desktop:
+    carryforward: true

@@ -60,7 +60,8 @@ workflows:
           parallelism: 2
           group: e2e
           post-steps:
-            - report-coverage
+            - report-coverage:
+                flag: desktop
           # do not preserve the workspace in this job, since
           # there are no jobs that follow it
           no-workspace: true
@@ -79,7 +80,8 @@ workflows:
           parallelism: 2
           group: "e2e mobile"
           post-steps:
-            - report-coverage
+            - report-coverage:
+                flag: mobile
           # do not preserve the workspace in this job, since
           # there are no jobs that follow it
           no-workspace: true
