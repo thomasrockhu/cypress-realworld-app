@@ -11,13 +11,17 @@ commands:
   report-coverage:
     description: |
       Store coverage report as an artifact and send it to Codecov service.
+    parameters:
+      flag:
+        type: string
+        default: ""
     steps:
       - store_artifacts:
           path: coverage
       - run: npx nyc report --reporter=text || true
       - codecov/upload:
           file: coverage/coverage-final.json
-          flags: ui
+          flags: << parameters.flag >>
 
 workflows:
   linux:
@@ -35,10 +39,10 @@ workflows:
           wait-on: "http://localhost:3000"
           requires:
             - cypress/install
-          record: true
           group: api
           post-steps:
-            - report-coverage
+            - report-coverage:
+                flag: backend
           # do not preserve the workspace in this job, since
           # there are no jobs that follow it
           no-workspace: true
@@ -52,7 +56,6 @@ workflows:
           wait-on: "http://localhost:3000"
           requires:
             - cypress/install
-          record: true
           parallel: true
           parallelism: 2
           group: e2e
@@ -72,7 +75,6 @@ workflows:
           wait-on: "http://localhost:3000"
           requires:
             - cypress/install
-          record: true
           parallel: true
           parallelism: 2
           group: "e2e mobile"
